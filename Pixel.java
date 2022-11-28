@@ -85,4 +85,10 @@ public class Pixel{
     public int getDistance(Pixel p){
         return Util.valAbs(getX()-p.getX())+Util.valAbs(getY()-p.getY());
     }
+
+    public void setPrecedent(Pixel p){
+        //TODO
+        
+    }
+
 }
