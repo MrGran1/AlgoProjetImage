@@ -44,10 +44,10 @@ public  class Util {
     
 
     //fonction qui fait un algorithme de dijkstra entre deux points en fonction de l'intensité des pixels
-    public static void dijkstraIntensite(BufferedImage bf,Pixel pixelDebut,Pixel pixelFin){
+   // public static 
         
         
-    }
+    //}
 
 
 

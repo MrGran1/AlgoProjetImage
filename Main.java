@@ -10,6 +10,8 @@ public class Main {
         String lienImage = "./image.jpg"; //a modifier
         File f = new File(lienImage);
         BufferedImage bf =ImageIO.read(f);
+        Matrice matrice = new Matrice(bf);
+        System.out.println(matrice);
          
     }
 }

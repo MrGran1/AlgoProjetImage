@@ -12,6 +12,8 @@ public class Pixel{
 
     public Pixel(BufferedImage bf,int x,int y){
         setIntensite(Util.getRgbFromLocation(bf, x, y));
+        this.x = x;
+        this.y = y;
     }
 
     public Pixel(ArrayList<Integer> rgb){
@@ -63,24 +65,24 @@ public class Pixel{
         setIntensite(Util.getRgbFromLocation(bf, x, y));
     }
 
-    public ArrayList<Pixel> getVoisin(BufferedImage bf){
-        ArrayList<Pixel> listePixelVoisin = new ArrayList<>();
-        int x = getX();
-        int y = getY();
-        if (x>0){
-            listePixelVoisin.add(new Pixel(bf,x-1,y));
-        }
-        if (x<bf.getWidth()-1){
-            listePixelVoisin.add(new Pixel(bf,x+1,y));
-        }
-        if (y>0){
-            listePixelVoisin.add(new Pixel(bf,x,y-1));
-        }
-        if (y<bf.getHeight()-1){
-            listePixelVoisin.add(new Pixel(bf,x,y+1));
-        }
-        return listePixelVoisin;
-    }
+    // public ArrayList<Pixel> getVoisin(BufferedImage bf){
+    //     ArrayList<Pixel> listePixelVoisin = new ArrayList<>();
+    //     int x = getX();
+    //     int y = getY();
+    //     if (x>0){
+    //         listePixelVoisin.add(new Pixel(bf,x-1,y));
+    //     }
+    //     if (x<bf.getWidth()-1){
+    //         listePixelVoisin.add(new Pixel(bf,x+1,y));
+    //     }
+    //     if (y>0){
+    //         listePixelVoisin.add(new Pixel(bf,x,y-1));
+    //     }
+    //     if (y<bf.getHeight()-1){
+    //         listePixelVoisin.add(new Pixel(bf,x,y+1));
+    //     }
+    //     return listePixelVoisin;
+    // }
 
     public int getDistance(Pixel p){
         return Util.valAbs(getX()-p.getX())+Util.valAbs(getY()-p.getY());
@@ -89,6 +91,10 @@ public class Pixel{
     public void setPrecedent(Pixel p){
         //TODO
         
+    }
+
+    public String toString(){
+        return "("+x+" : "+y+") intensite : "+intensite;
     }
 
 }
