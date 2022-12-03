@@ -3,17 +3,20 @@ import java.util.ArrayList;
 
 
 public class Pixel{
-    int x,y;
+    private int x,y;
     private int intensite;
+    private Integer distance;
 // -------------Constructeurs ---------------------------------------------------
     public Pixel(int r, int g, int b){
         intensite = r+b+g;
     }
 
     public Pixel(BufferedImage bf,int x,int y){
-        setIntensite(Util.getRgbFromLocation(bf, x, y));
         this.x = x;
         this.y = y;
+        ArrayList<Integer> rgb = Util.getRgbFromLocation(bf, x, y);
+        intensite = rgb.get(0)+rgb.get(1)+rgb.get(2);
+        distance = null;
     }
 
     public Pixel(ArrayList<Integer> rgb){
@@ -35,6 +38,14 @@ public class Pixel{
     }
     public int getY(){
         return y;
+    }
+
+    public void setDistance(int distance){
+        this.distance = distance;
+    }
+
+    public Integer getDistance(){
+        return distance;
     }
 
     /* 
