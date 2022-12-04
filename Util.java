@@ -42,16 +42,13 @@ public  class Util {
         return rgb;
     }
     
-
+    //retourne le poids de l'arête entre deux pixels
     public static int poids(Pixel p1,Pixel p2){
         return p1.difIntensite(p2);
     }
 
     //fonction qui fait un algorithme de dijkstra entre deux points en fonction de l'intensité des pixels
-   // public static 
-        
-        
-    //}
+   
     public static ArrayList<Pixel> dijkstra(Pixel depart, Pixel arrivee, Matrice matriceImage){
         
         ArrayList<Pixel> chemin = new ArrayList<>();
