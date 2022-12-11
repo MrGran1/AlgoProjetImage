@@ -6,10 +6,10 @@ public class Pixel{
     private int x,y;
     private int intensite;
     private Integer distance;
+    private Pixel parentDijkstra;
+
+
 // -------------Constructeurs ---------------------------------------------------
-    public Pixel(int r, int g, int b){
-        intensite = r+b+g;
-    }
 
     public Pixel(BufferedImage bf,int x,int y){
         this.x = x;
@@ -17,6 +17,7 @@ public class Pixel{
         ArrayList<Integer> rgb = Util.getRgbFromLocation(bf, x, y);
         intensite = rgb.get(0)+rgb.get(1)+rgb.get(2);
         distance = null;
+        pareentDijkstra = null;
     }
 
     public Pixel(ArrayList<Integer> rgb){
@@ -46,6 +47,14 @@ public class Pixel{
 
     public Integer getDistance(){
         return distance;
+    }
+
+    public void setParentDijkstra(Pixel p){
+        parentDijkstra = p;
+    }
+
+    public Pixel getParentDijkstra(){
+        return parentDijkstra;
     }
 
     /* 

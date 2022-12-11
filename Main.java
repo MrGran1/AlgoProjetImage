@@ -15,5 +15,7 @@ public class Main {
         int iArrivee=0,jArrivee=0; //Demander à l'utilisateur les coordonnées d'arrivée
         Pixel depart = matriceImage.getPixel(iDepart, jDepart);
         Pixel arrivee = matriceImage.getPixel(iArrivee, jArrivee); 
+        Stage stage = new Stage();
+        
     }
 }
