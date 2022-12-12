@@ -68,5 +68,12 @@ public  class Util {
     }
 
 
+    public static void remplirRouge(BufferedImage bf, ArrayList<Pixel> chemin){
+        for (Pixel p : chemin){
+            bf.setRGB(p.getX(),p.getY(),0xff0000);
+        }
+    }
+
+
 }
 

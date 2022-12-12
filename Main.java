@@ -2,6 +2,8 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
+import javax.rmi.CORBA.Util;
+
 import java.awt.image.BufferedImage;
 
 public class Main {
@@ -16,6 +18,12 @@ public class Main {
         Pixel depart = matriceImage.getPixel(iDepart, jDepart);
         Pixel arrivee = matriceImage.getPixel(iArrivee, jArrivee); 
         Stage stage = new Stage();
+
+
+
+        ArrayList<Pixel> chemin = Util.dijkstra(depart, arrivee, matriceImage);
+        Util.remplirRouge(chemin, matriceImage);
+
         
     }
 }
