@@ -73,6 +73,13 @@ public  class Util {
             bf.setRGB(p.getX(),p.getY(),0xff0000);
         }
     }
+    
+    public void afficherImage(BufferedImage bf){
+        Stage stage = new Stage();
+        stage.setTitle("Image");
+        stage.setScene(new Scene(new HBox(new ImageView(SwingFXUtils.toFXImage(bf, null)))));
+        stage.show();
+    }
 
 
 }

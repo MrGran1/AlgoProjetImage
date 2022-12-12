@@ -17,7 +17,7 @@ public class Pixel{
         ArrayList<Integer> rgb = Util.getRgbFromLocation(bf, x, y);
         intensite = rgb.get(0)+rgb.get(1)+rgb.get(2);
         distance = null;
-        pareentDijkstra = null;
+        parentDijkstra = null;
     }
 
     public Pixel(ArrayList<Integer> rgb){

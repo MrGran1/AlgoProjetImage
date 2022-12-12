@@ -1,5 +1,6 @@
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 import javax.rmi.CORBA.Util;
@@ -11,18 +12,23 @@ public class Main {
     public static void main(String[]args) throws IOException{
         String lienImage = "./image.jpg"; //a modifier
         File f = new File(lienImage);
-        BufferedImage bf =ImageIO.read(f);
-        Matrice matriceImage = new Matrice(bf);
+        BufferedImage bfDepart =ImageIO.read(f);
+
+        File fFin = new File("./image.jpg");
+        BufferedImage bfFin =ImageIO.read(fFin);
+
+
+        Matrice matriceImage = new Matrice(bfDepart);
         int iDepart=0,jDepart=0; //Demander à l'utilisateur les coordonnées de depart
         int iArrivee=0,jArrivee=0; //Demander à l'utilisateur les coordonnées d'arrivée
         Pixel depart = matriceImage.getPixel(iDepart, jDepart);
         Pixel arrivee = matriceImage.getPixel(iArrivee, jArrivee); 
-        Stage stage = new Stage();
-
+    
 
 
         ArrayList<Pixel> chemin = Util.dijkstra(depart, arrivee, matriceImage);
-        Util.remplirRouge(chemin, matriceImage);
+        Util.remplirRouge(bfFin,chemin);
+        afficherImage(bfFin);
 
         
     }
