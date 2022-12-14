@@ -92,5 +92,8 @@ public class Pixel{
         return Util.valAbs(getX()-p.getX())+Util.valAbs(getY()-p.getY());
     }
 
+    public String toString(){
+        return "x + "+x + " y : " + y;
+    }
 
 }

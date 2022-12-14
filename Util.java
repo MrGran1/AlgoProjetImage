@@ -1,5 +1,8 @@
 import java.util.ArrayList;
+import java.util.Scanner;
 import java.awt.image.BufferedImage;
+import java.awt.*;
+import javax.swing.*;
 
 public  class Util {
 
@@ -52,47 +55,52 @@ public  class Util {
     public static ArrayList<Pixel> dijkstra(Pixel depart, Pixel arrivee, Matrice matriceImage){
         
         ArrayList<Pixel> chemin = new ArrayList<>();
-        ArrayList<Pixel> pixelsVisites = new ArrayList<>();
+        
         ArrayList<Pixel> pixelsNonVisites = new ArrayList<>();
 
         Pixel pixelActu = depart;
+        depart.setDistance(0);
         while(pixelActu != arrivee){
-            pixelsVisites.add(pixelActu);
-            ArrayList<Pixel> voisins = matriceImage.getVoisins(pixelActu);
-            for(Pixel p : voisins){
-                if(!pixelsVisites.contains(p)){
-                    if(p.getDistance() == null){
-                        p.setDistance(Util.poids(pixelActu, p));
-                        p.setParentDijkstra(pixelActu);
-                    }
-                    else if(p.getDistance() > Util.poids(pixelActu, p) + pixelActu.getDistance()){
-                        p.setDistance(Util.poids(pixelActu, p) + pixelActu.getDistance());
-                        p.setParentDijkstra(pixelActu);
-                    }
+            
+           for(Pixel voisin : matriceImage.getVoisin(pixelActu)){ // On défini la valeur des distances des voisins
+            
+                Integer distance = pixelActu.getDistance() + voisin.difIntensite(pixelActu)+1;
+                
+                if (voisin.getDistance()==null){
+                    voisin.setDistance(distance);
+                    voisin.setParentDijkstra(pixelActu);
+                    pixelsNonVisites.add(voisin);
+                   
                 }
-            }
-            int min = Integer.MAX_VALUE;
-            for(Pixel p : voisins){
-                if(!pixelsVisites.contains(p)){
-                    if(p.getDistance() < min){
-                        min = p.getDistance();
-                        pixelActu = p;
-                    }
+                else if(voisin.getDistance()>distance){
+                    voisin.setParentDijkstra(pixelActu);
+                    voisin.setDistance(distance);
                 }
-            }
+
+           }
+          
+           Pixel pixelMin = pixelsNonVisites.get(0);
+           for (int i =1;i<pixelsNonVisites.size();i++){
+                if (pixelsNonVisites.get(i).getDistance()< pixelMin.getDistance()){
+                    pixelMin = pixelsNonVisites.get(i);
+                }
+           }
+           pixelsNonVisites.remove(pixelMin);
+           pixelActu = pixelMin;
+           
+
+
+
+
         }
         
+        while(!pixelActu.equals(depart)){
+            
+            chemin.add(pixelActu);
+            pixelActu = pixelActu.getParentDijkstra();
+        }
 
-
-
-
-
-
-
-
-
-
-        return null;
+        return chemin;
     }
 
 
@@ -102,13 +110,37 @@ public  class Util {
         }
     }
     
-    public void afficherImage(BufferedImage bf){
-        Stage stage = new Stage();
-        stage.setTitle("Image");
-        stage.setScene(new Scene(new HBox(new ImageView(SwingFXUtils.toFXImage(bf, null)))));
-        stage.show();
+    public static void afficherImage(BufferedImage bf){
+    	ImageIcon image = new ImageIcon(bf);
+        JFrame fenetre = new JFrame();
+      //  JPanel pane = new JPanel();
+        JLabel j = new JLabel ();
+        j.setIcon(image);
+        fenetre.add(j);
+        
+       // fenetre.setContentPane(pane);
+        fenetre.pack();
+        fenetre.setVisible(true);
+        fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
     }
+    
+    public static void demanderCoordonnee() {
+    	JFrame fenetre = new JFrame();
+    	JTextField x = new JTextField ("Coordonnée de x de départ");
+    	JTextField y = new JTextField ("Coordonnée de y de départ");
 
+    	JTextField xFin = new JTextField ("Coordonnée de x de fin");
+    	JTextField yFin = new JTextField ("Coordonnée de y de fin");
 
+    	fenetre.add(x);
+    	fenetre.add(y);
+    	fenetre.add(xFin);
+    	fenetre.add(yFin);
+    	Button b = new Button("ok");
+    	fenetre.add(b);
+    }
 }
+    	
+    	
 
