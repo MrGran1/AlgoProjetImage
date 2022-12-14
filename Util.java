@@ -53,6 +53,34 @@ public  class Util {
         
         ArrayList<Pixel> chemin = new ArrayList<>();
         ArrayList<Pixel> pixelsVisites = new ArrayList<>();
+        ArrayList<Pixel> pixelsNonVisites = new ArrayList<>();
+
+        Pixel pixelActu = depart;
+        while(pixelActu != arrivee){
+            pixelsVisites.add(pixelActu);
+            ArrayList<Pixel> voisins = matriceImage.getVoisins(pixelActu);
+            for(Pixel p : voisins){
+                if(!pixelsVisites.contains(p)){
+                    if(p.getDistance() == null){
+                        p.setDistance(Util.poids(pixelActu, p));
+                        p.setParentDijkstra(pixelActu);
+                    }
+                    else if(p.getDistance() > Util.poids(pixelActu, p) + pixelActu.getDistance()){
+                        p.setDistance(Util.poids(pixelActu, p) + pixelActu.getDistance());
+                        p.setParentDijkstra(pixelActu);
+                    }
+                }
+            }
+            int min = Integer.MAX_VALUE;
+            for(Pixel p : voisins){
+                if(!pixelsVisites.contains(p)){
+                    if(p.getDistance() < min){
+                        min = p.getDistance();
+                        pixelActu = p;
+                    }
+                }
+            }
+        }
         
 
 

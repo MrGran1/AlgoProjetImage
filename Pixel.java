@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Pixel{
     private int x,y;
-    private int intensite;
+    private int r,g,b;
     private Integer distance;
     private Pixel parentDijkstra;
 
@@ -15,24 +15,23 @@ public class Pixel{
         this.x = x;
         this.y = y;
         ArrayList<Integer> rgb = Util.getRgbFromLocation(bf, x, y);
-        intensite = rgb.get(0)+rgb.get(1)+rgb.get(2);
+        r =rgb.get(0);
+        g =rgb.get(1);
+        b =rgb.get(2);
         distance = null;
         parentDijkstra = null;
     }
 
     public Pixel(ArrayList<Integer> rgb){
-        int r =rgb.get(0);
-        int g =rgb.get(1);
-        int b =rgb.get(2);
+        r =rgb.get(0);
+        g =rgb.get(1);
+        b =rgb.get(2);
 
-        intensite = r+g+b;
+        
     }
 
 
 // ----------------- Methode -------------------------
-    public int getIntensite(){
-        return intensite;
-    }
 
     public int getX(){
         return x;
@@ -57,11 +56,27 @@ public class Pixel{
         return parentDijkstra;
     }
 
+    public int getR(){
+        return r;
+    }
+
+    public int getG(){
+        return g;
+    }
+
+    public int getB(){
+        return b;
+    }
+
     /* 
      * Cette méthode retourne la différence d'intensité entre ce pixel et un autre
      */
     public int difIntensite(Pixel p1){
-        return Util.valAbs(intensite - p1.getIntensite());
+        int intensite=0;
+        intensite += Util.valAbs(this.r - p1.getR());
+        intensite += Util.valAbs(this.g - p1.getG());
+        intensite += Util.valAbs(this.b - p1.getB());
+        return intensite;
     }
     /*
      * instancie l'intensité grâce à une ArrayList
@@ -70,32 +85,12 @@ public class Pixel{
      * b est l'intensité de bleu dans un pixel
      */
     
-    public void setIntensite(ArrayList<Integer> rgb){
-        int r =rgb.get(0);
-        int g =rgb.get(1);
-        int b =rgb.get(2);
 
-        intensite = r+g+b;
-    }
-
-    /*
-     * instancie l'intensité grâce à une position et un buffer
-     */
-    public void setIntensite(BufferedImage bf,int x,int y){
-        setIntensite(Util.getRgbFromLocation(bf, x, y));
-    }
+    
 
     public int getDistance(Pixel p){
         return Util.valAbs(getX()-p.getX())+Util.valAbs(getY()-p.getY());
     }
 
-    public void setPrecedent(Pixel p){
-        //TODO
-        
-    }
-
-    public String toString(){
-        return "("+x+" : "+y+") intensite : "+intensite;
-    }
 
 }
