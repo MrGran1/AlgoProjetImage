@@ -1,4 +1,5 @@
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -12,15 +13,28 @@ public class Main {
 
     public static void main(String[]args) throws IOException{
         Scanner sc = new Scanner(System.in);
-        
+        BufferedImage bf =null;
         String lienImage = ""; //a modifier
         int iDepart=0,jDepart=0; //Demander à l'utilisateur les coordonnées de depart
         int iArrivee=0,jArrivee=0; //Demander à l'utilisateur les coordonnées d'arrivée
 
         System.out.println("Entrez le nom du fichier de l'image");
     	lienImage = sc.nextLine();
-    	 File f = new File(lienImage);
-         BufferedImage bf =ImageIO.read(f);
+        try{
+            File f = new File(lienImage);
+            bf=ImageIO.read(f);
+
+        }
+        catch(FileNotFoundException e){
+            System.out.println("Fichier non trouvé");
+            System.exit(1);
+        }
+        catch(IOException e){
+            System.out.println("Erreur lors de la lecture de l'image \n Le nom du fichier est peut être incorrect");
+            System.exit(1);
+
+        }
+        
          boolean condition =true;
         while(condition){
 
