@@ -21,17 +21,31 @@ public class Main {
     	lienImage = sc.nextLine();
     	 File f = new File(lienImage);
          BufferedImage bf =ImageIO.read(f);
-         
-    	
-    	System.out.println("Entrez la coordonnée x du point de départ entre 0 et " + bf.getWidth());
-    	iDepart = sc.nextInt();
-    	System.out.println("Entrez la coordonnée y du point de départ entre 0 et " + bf.getHeight());
-    	jDepart = sc.nextInt();
-    	System.out.println("Entrez la coordonnée x du point d'arrivée entre 0 et " + bf.getWidth());
-    	iArrivee = sc.nextInt();
-    	System.out.println("Entrez la coordonnée y du point d'arrivée entre 0 et " + bf.getHeight());
-    	jArrivee = sc.nextInt();
-       
+         boolean condition =true;
+        while(condition){
+
+        
+            try{
+                
+                System.out.println("Entrez la coordonnée x du point de départ entre 0 et " + (bf.getWidth()-1));
+                iDepart = sc.nextInt();
+                System.out.println("Entrez la coordonnée y du point de départ entre 0 et " + (bf.getHeight()-1));
+                jDepart = sc.nextInt();
+                System.out.println("Entrez la coordonnée x du point d'arrivée entre 0 et " + (bf.getWidth()-1));
+                iArrivee = sc.nextInt();
+                System.out.println("Entrez la coordonnée y du point d'arrivée entre 0 et " + (bf.getHeight()-1));
+                jArrivee = sc.nextInt();
+                if (iDepart < 0 || iDepart >= bf.getWidth() || jDepart < 0 || jDepart >= bf.getHeight() || iArrivee < 0 || iArrivee >= bf.getWidth() || jArrivee < 0 || jArrivee >= bf.getHeight()){
+                    System.out.println("Coordonnée incorect");
+                }
+                else {
+                    condition = false;
+                }
+            }
+            catch(IllegalArgumentException e ){
+                System.out.println("Veuiller entrez des coordonnées entières");
+            }
+        }
         
         Matrice matriceImage = new Matrice(bf);
         
@@ -39,7 +53,7 @@ public class Main {
         Pixel arrivee = matriceImage.getPixel(iArrivee, jArrivee); 
     
 
-
+        
         ArrayList<Pixel> chemin = Util.dijkstra(depart, arrivee, matriceImage);
         Util.remplirRouge(bf,chemin);
         Util.afficherImage(bf);
