@@ -13,7 +13,7 @@ Il est composé de 2 parties
   Il est codé en <b>Java</b>
   
   
-###Utilisation 
+### Utilisation 
 
 Pour faire marcher le projet, il faut lancer la Classe Main dans un IDE adapté à java ou directement en ligne de commande.
 
