@@ -7,7 +7,7 @@ Il est composé de 2 parties
   * <b>Partie B</b> : TP à rendre
   
   ## Projet : Implémentation du plus court chemin d'une image
-  ###Description
+  ### Description
   
   Le projet s'articule autour d'un [algorithme de dijkstra](https://fr.wikipedia.org/wiki/Algorithme_de_Dijkstra) et ne permet la navigation entre pixel voisin que s'ils sont à la verticale où à l'horizontal de celui ci.
   Il est codé en <b>Java</b>
