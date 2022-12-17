@@ -124,21 +124,6 @@ public  class Util {
 
     }
     
-    public static void demanderCoordonnee() {
-    	JFrame fenetre = new JFrame();
-    	JTextField x = new JTextField ("Coordonnée de x de départ");
-    	JTextField y = new JTextField ("Coordonnée de y de départ");
-
-    	JTextField xFin = new JTextField ("Coordonnée de x de fin");
-    	JTextField yFin = new JTextField ("Coordonnée de y de fin");
-
-    	fenetre.add(x);
-    	fenetre.add(y);
-    	fenetre.add(xFin);
-    	fenetre.add(yFin);
-    	Button b = new Button("ok");
-    	fenetre.add(b);
-    }
 }
     	
     	
